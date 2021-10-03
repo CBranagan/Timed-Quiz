@@ -1,3 +1,33 @@
-h1 {
-    color: red;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+}
+
+/*header info*/
+
+
+#Timer-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    min-height: 200px;
+}
+
+/*Question box styling*/
+
+#Question-box {
+    margin: 0px 40px;
+    border: solid blue 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 600px;
+    justify-content: space-evenly;
+    border-radius: 15px;
+}
+
+#btn {
+    padding: 25px;
+    font-size: 20px;
 }
