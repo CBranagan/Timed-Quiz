@@ -16,7 +16,7 @@
 
 /*Question box styling*/
 
-#Question-box {
+main {
     margin: 0px 40px;
     border: solid blue 2px;
     display: flex;
