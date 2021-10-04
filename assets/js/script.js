@@ -10,7 +10,8 @@ var questionList = [
         answer1: "Chad",
         answer2: "Liam",
         answer3: "Lucas",
-        answer4: "Kate"        
+        answer4: "Kate",
+        realanswer: "answer1"       
 },
 {
     question: "What is your favorite color?",
@@ -58,19 +59,19 @@ function createQuestionForm() {
     question.textContent = questionList[0].question;
         
     var answer1 = document.createElement("li")
-    answer1.class = "Answer"
+    answer1.class = "answer1"
     answer1.textContent = questionList[0].answer1
 
     var answer2 = document.createElement("li")
-    answer2.class = "Answer"
+    answer2.class = "answer2"
     answer2.textContent = questionList[0].answer2
 
     var answer3 = document.createElement("li")
-    answer3.class = "Answer"
+    answer3.class = "answer3"
     answer3.textContent = questionList[0].answer3
 
     var answer4 = document.createElement("li")
-    answer4.class = "Answer"
+    answer4.class = "answer4"
     answer4.textContent = questionList[0].answer4
     
     answerList.appendChild(answer1)
@@ -78,15 +79,26 @@ function createQuestionForm() {
     answerList.appendChild(answer3)
     answerList.appendChild(answer4)
 
-    answerList.addEventListener("click", function(evt){
-        console.dir(this)
+
+    answer1.addEventListener("click", function(evt){
+        if(this.class === questionList[0].realanswer) {
+
+            console.log("your right")   
+        } else {
+            console.log("your wrong")
+        }
+
+    })
+    answer2.addEventListener("click", function(evt){
+        console.log(this.class)      
+    })
+    answer3.addEventListener("click", function(evt){
+        console.log(this.class)      
+    })
+    answer4.addEventListener("click", function(evt){
+        console.log(this.class)      
     })
     }
-
-
-            
-        
-
     
     
 
