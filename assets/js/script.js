@@ -2,14 +2,52 @@
 var formButton = document.getElementById('Btn');
 var timerEl = document.getElementById('Timer');
 var questionBox = document.getElementById('Question-box');
-var gameRules = document.getElementById('Game-rules');
+var question = document.getElementById('Question');
+var answerList = document.getElementById("Answer-list")
+var questionList = [
+    {
+        question: "What is your name?",
+        answer1: "Chad",
+        answer2: "Liam",
+        answer3: "Lucas",
+        answer4: "Kate"        
+},
+{
+    question: "What is your favorite color?",
+        answer1: "red",
+        answer2: "blue",
+        answer3: "green",
+        answer4: "yellow"  
+},
+{
+    question: "What is your favorite food?",
+        answer1: "pizza",
+        answer2: "tacos",
+        answer3: "pasta",
+        answer4: "stir fry"  
+},
+{
+    question: "What is your favorite drink?",
+        answer1: "coke",
+        answer2: "water",
+        answer3: "juice",
+        answer4: "milk"  
+},
+{
+    question: "What is your favorite car?",
+        answer1: "jeep",
+        answer2: "ford",
+        answer3: "dodge",
+        answer4: "toyota"  
+}
+]
 
 //when start button is clicked the timer starts running and the first question appears
 
 
 var startQuiz = function(event) {
     event.preventDefault();
-    
+
     createQuestionForm();
 
     countdown();
@@ -17,63 +55,40 @@ var startQuiz = function(event) {
 
 function createQuestionForm() {
 
-    var questionForm1 = document.createElement('div');
-    var question1 = document.createElement('form');
-    question1.textContent = "Question Form";
-    
-    var answer1Box = document.createElement('div');
-    var answer1 = document.createElement('input');
-    answer1.setAttribute("type", "radio");
-    var answer1Text = document.createElement('span');
-    answer1Text.textContent = " answer1";
-    
-    
-    
-    var answer2Box = document.createElement('div');
-    var answer2 = document.createElement('input');
-    answer2.setAttribute("type", "radio");
-    var answer2Text = document.createElement('span');
-    answer2Text.textContent = " answer2";
-    
-    var answer3Box = document.createElement('div');
-    var answer3 = document.createElement('input');
-    answer3.setAttribute("type", "radio");
-    var answer3Text = document.createElement('span');
-    answer3Text.textContent = " answer3";
-    
-    var answer4Box = document.createElement('div');
-    var answer4 = document.createElement('input');
-    answer4.setAttribute("type", "radio");
-    var answer4Text = document.createElement('span');
-    answer4Text.textContent = " answer4";
-    
-    gameRules.textContent = "";
+    question.textContent = questionList[0].question;
+        
+    var answer1 = document.createElement("li")
+    answer1.class = "Answer"
+    answer1.textContent = questionList[0].answer1
 
-    
-    answer1Box.appendChild(answer1)
-    answer1Box.appendChild(answer1Text)
-    
-    answer2Box.appendChild(answer2)
-    answer2Box.appendChild(answer2Text)
-    
-    answer3Box.appendChild(answer3)
-    answer3Box.appendChild(answer3Text)
+    var answer2 = document.createElement("li")
+    answer2.class = "Answer"
+    answer2.textContent = questionList[0].answer2
 
-    answer4Box.appendChild(answer4)
-    answer4Box.appendChild(answer4Text)
+    var answer3 = document.createElement("li")
+    answer3.class = "Answer"
+    answer3.textContent = questionList[0].answer3
+
+    var answer4 = document.createElement("li")
+    answer4.class = "Answer"
+    answer4.textContent = questionList[0].answer4
     
-    
-    questionBox.appendChild(gameRules);
-    questionBox.appendChild(question1);
+    answerList.appendChild(answer1)
+    answerList.appendChild(answer2)
+    answerList.appendChild(answer3)
+    answerList.appendChild(answer4)
 
-    questionBox.appendChild(questionForm1);
-    questionBox.appendChild(answer1Box)
-    questionBox.appendChild(answer2Box)
-    questionBox.appendChild(answer3Box)
-    questionBox.appendChild(answer4Box)
-
-
+    answerList.addEventListener("click", function(evt){
+        console.dir(this)
+    })
     }
+
+
+            
+        
+
+    
+    
 
 
 //function to start timer
