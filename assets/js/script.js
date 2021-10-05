@@ -70,19 +70,19 @@ function createQuestionForm() {
     question.textContent = questionList[0].question;
         
     var answer1 = document.createElement("li")
-    answer1.class = "answer1"
+    answer1.classList.add("answer")
     answer1.textContent = questionList[0].answer1
 
     var answer2 = document.createElement("li")
-    answer2.class = "answer2"
+    answer2.classList.add("answer")
     answer2.textContent = questionList[0].answer2
 
     var answer3 = document.createElement("li")
-    answer3.class = "answer3"
-    answer3.textContent = questionList[0].answer3
+    answer3.classList.add("answer")   
+     answer3.textContent = questionList[0].answer3
 
     var answer4 = document.createElement("li")
-    answer4.class = "answer4"
+    answer4.classList.add("answer")
     answer4.textContent = questionList[0].answer4
     
     
@@ -97,67 +97,72 @@ function createQuestionForm() {
     // questionBox.append(answerList)
     // var answerList = document.getElementById('Answer-list')
 
-    // answerList.addEventListener("click", function(evt) {
-    //     console.log(event.target.class)
-    // })
+    answerList.addEventListener("click", function(event) {
+        var isQuestion = event.target.classList.contains("answer");
+
+        if(isQuestion) { 
+            
+        console.log(isQuestion)
+        }
+    })
 
     
-    answer1.addEventListener("click", function(evt){
-        if(this.class === questionList[0].realanswer) {
+    // answer1.addEventListener("click", function(evt){
+    //     if(this.class === questionList[0].realanswer) {
 
-            console.log("your right")  
-            //score 5 points and go to next question
-            playerPoints = playerPoints + 5;
-            console.log(playerPoints)
-        } else {
-            //if your wrong lose 10 sec and 3 points, go to next question
+    //         console.log("your right")  
+    //         //score 5 points and go to next question
+    //         playerPoints = playerPoints + 5;
+    //         console.log(playerPoints)
+    //     } else {
+    //         //if your wrong lose 10 sec and 3 points, go to next question
 
-            console.log("your wrong")
-        }
+    //         console.log("your wrong")
+    //     }
 
-    })
-    answer2.addEventListener("click", function(evt){
-        console.log(this.class)      
-        if(this.class === questionList[0].realanswer) {
+    // })
+    // answer2.addEventListener("click", function(evt){
+    //     console.log(this.class)      
+    //     if(this.class === questionList[0].realanswer) {
 
-            console.log("your right")  
-            //score 5 points and go to next question
-            playerPoints = playerPoints + 5;
-            console.log(playerPoints)
-        } else {
-            //if your wrong lose 10 sec and 3 points, go to next question
+    //         console.log("your right")  
+    //         //score 5 points and go to next question
+    //         playerPoints = playerPoints + 5;
+    //         console.log(playerPoints)
+    //     } else {
+    //         //if your wrong lose 10 sec and 3 points, go to next question
 
-            console.log("your wrong")
-        }
-    })
-    answer3.addEventListener("click", function(evt){
-        console.log(this.class)      
-        if(this.class === questionList[0].realanswer) {
+    //         console.log("your wrong")
+    //     }
+    // })
+    // answer3.addEventListener("click", function(evt){
+    //     console.log(this.class)      
+    //     if(this.class === questionList[0].realanswer) {
 
-            console.log("your right")  
-            //score 5 points and go to next question
-            playerPoints = playerPoints + 5;
-            console.log(playerPoints)
-        } else {
-            //if your wrong lose 10 sec and 3 points, go to next question
+    //         console.log("your right")  
+    //         //score 5 points and go to next question
+    //         playerPoints = playerPoints + 5;
+    //         console.log(playerPoints)
+    //     } else {
+    //         //if your wrong lose 10 sec and 3 points, go to next question
 
-            console.log("your wrong")
-        }
-    })
-    answer4.addEventListener("click", function(evt){
-        console.log(this.class)     
-        if(this.class === questionList[0].realanswer) {
+    //         console.log("your wrong")
+    //     }
+    // })
+    // answer4.addEventListener("click", function(evt){
+    //     console.log(this.class)     
+    //     if(this.class === questionList[0].realanswer) {
 
-            console.log("your right")  
-            //score 5 points and go to next question
-            playerPoints = playerPoints + 5;
-            console.log(playerPoints)
-        } else {
-            //if your wrong lose 10 sec and 3 points, go to next question
+    //         console.log("your right")  
+    //         //score 5 points and go to next question
+    //         playerPoints = playerPoints + 5;
+    //         console.log(playerPoints)
+    //     } else {
+    //         //if your wrong lose 10 sec and 3 points, go to next question
 
-            console.log("your wrong")
-        } 
-    })
+    //         console.log("your wrong")
+    //     } 
+    // 
     
     
 }
