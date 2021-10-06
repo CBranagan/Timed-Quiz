@@ -1,6 +1,6 @@
 //list of global variables and object array
 var playerPoints = 0
-var timeLeft = 60;
+var timeLeft = 5;
 
 var formButton = document.getElementById('Btn');
 var timerEl = document.getElementById('Timer');
@@ -50,40 +50,37 @@ var questionList = [
 }
 ]
 
-//when start button is clicked the timer starts running and the first question appears
 
 
-var startQuiz = function(event) {
-    event.preventDefault();
 
-    createQuestionForm();
 
-    countdown();
-}
-
-function createQuestionForm() {
-
-    // for(i=0; i < questionList.length; i++) {
-        
+var createQuestionForm = function(questionList) {
+    
+    
     //create question and answers and append them to the webpage
-
-    question.textContent = questionList[0].question;
-        
+    
+    
+    
+    
+    
+    
+    question.textContent = questionList.question;
+    
     var answer1 = document.createElement("li")
     answer1.classList.add("answer")
-    answer1.textContent = questionList[0].answer1
-
+    answer1.textContent = questionList.answer1
+    
     var answer2 = document.createElement("li")
     answer2.classList.add("answer")
-    answer2.textContent = questionList[0].answer2
-
+    answer2.textContent = questionList.answer2
+    
     var answer3 = document.createElement("li")
     answer3.classList.add("answer")   
-     answer3.textContent = questionList[0].answer3
-
+    answer3.textContent = questionList.answer3
+    
     var answer4 = document.createElement("li")
     answer4.classList.add("answer")
-    answer4.textContent = questionList[0].answer4
+    answer4.textContent = questionList.answer4
     
     
     
@@ -91,24 +88,23 @@ function createQuestionForm() {
     answerList.appendChild(answer2)
     answerList.appendChild(answer3)
     answerList.appendChild(answer4)
-
-
-
+    
+    
     //listen for the click and return the text content of the item clicked
-
-
+    
+    
     answerList.addEventListener("click", function(event) {
-
+        
         
         var isQuestion = event.target.textContent;
-       
         
-      //compare the returned textContent and compare it to the real answer. if true award the player 5 points
-      //and move on to the next question. If wrong subtract 3pts from player score, minus 5 sec from countdown and move
-      //on to next question.  
-
-        if(isQuestion === questionList[0].realanswer) { 
-
+        
+        //compare the returned textContent and compare it to the real answer. if true award the player 5 points  
+        //and move on to the next question. If wrong subtract 3pts from player score, minus 5 sec from countdown and move
+        //on to next question.  
+        
+        if(isQuestion === questionList.realanswer) { 
+            
             playerPoints = playerPoints + 5;
             console.log(playerPoints)
             
@@ -117,13 +113,38 @@ function createQuestionForm() {
             playerPoints = playerPoints - 3;
             console.log(playerPoints)
             timeLeft = timeLeft - 10;
+            
+        }    
+    })    
+}    
 
-        }
-    })
+
+//when start button is clicked the timer starts running and the first question appears
+
+
+var startQuiz = function() {
+    
+    countdown();
+    
+    for (i=0; i < questionList.length; i++) {
+        
+        console.log(i)
+        
+        if (timeLeft > 1 && i < questionList.length) {
+            
+            var pickedQuestion = questionList[i]
+            console.log(pickedQuestion)
+            
+            createQuestionForm(pickedQuestion);
+            
+            
+            
+    
+            } else {
+                alert("Game Over")
+            }}}
 
     
-    
-}
 
 
 
@@ -138,8 +159,6 @@ function countdown() {
 
             timerEl.textContent = timeLeft;
             timeLeft--;
-        } else {
-            //endgame                       
         }
     }, 1000)
 };
@@ -148,15 +167,14 @@ function countdown() {
 formButton.addEventListener("click", startQuiz);
 
 
-//when a question is answered another question appears
 
 
 
-//if a question is answered incorectly then time is subtracted from the timer
 
 
 
-//when all questions are answered or the timer reaches 0 then the game is over
+
+
 
 
 
