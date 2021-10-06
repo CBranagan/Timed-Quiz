@@ -1,6 +1,6 @@
-//player has 0 pts to start with and will increase if questions answered correctly
+//list of global variables and object array
 var playerPoints = 0
-
+var timeLeft = 60;
 
 var formButton = document.getElementById('Btn');
 var timerEl = document.getElementById('Timer');
@@ -14,7 +14,7 @@ var questionList = [
         answer2: "Liam",
         answer3: "Lucas",
         answer4: "Kate",
-        realanswer: "answer1"       
+        realanswer: "Chad"       
 },
 {
     question: "What is your favorite color?",
@@ -22,7 +22,7 @@ var questionList = [
         answer2: "blue",
         answer3: "green",
         answer4: "yellow",
-        realanswer: ""  
+        realanswer: "red"  
 },
 {
     question: "What is your favorite food?",
@@ -30,7 +30,7 @@ var questionList = [
         answer2: "tacos",
         answer3: "pasta",
         answer4: "stir fry", 
-        realanswer: ""  
+        realanswer: "tacos"  
 },
 {
     question: "What is your favorite drink?",
@@ -38,7 +38,7 @@ var questionList = [
         answer2: "water",
         answer3: "juice",
         answer4: "milk", 
-        realanswer: ""  
+        realanswer: "coke"  
 },
 {
     question: "What is your favorite car?",
@@ -46,7 +46,7 @@ var questionList = [
         answer2: "ford",
         answer3: "dodge",
         answer4: "toyota", 
-        realanswer: ""  
+        realanswer: "jeep"  
 }
 ]
 
@@ -64,8 +64,8 @@ var startQuiz = function(event) {
 function createQuestionForm() {
 
     // for(i=0; i < questionList.length; i++) {
-
         
+    //create question and answers and append them to the webpage
 
     question.textContent = questionList[0].question;
         
@@ -92,88 +92,46 @@ function createQuestionForm() {
     answerList.appendChild(answer3)
     answerList.appendChild(answer4)
 
-    //possible answer to event delegation????
-    
-    // questionBox.append(answerList)
-    // var answerList = document.getElementById('Answer-list')
+
+
+    //listen for the click and return the text content of the item clicked
+
 
     answerList.addEventListener("click", function(event) {
-        var isQuestion = event.target.classList.contains("answer");
 
-        if(isQuestion) { 
+        
+        var isQuestion = event.target.textContent;
+       
+        
+      //compare the returned textContent and compare it to the real answer. if true award the player 5 points
+      //and move on to the next question. If wrong subtract 3pts from player score, minus 5 sec from countdown and move
+      //on to next question.  
+
+        if(isQuestion === questionList[0].realanswer) { 
+
+            playerPoints = playerPoints + 5;
+            console.log(playerPoints)
             
-        console.log(isQuestion)
+        } else {
+            
+            playerPoints = playerPoints - 3;
+            console.log(playerPoints)
+            timeLeft = timeLeft - 10;
+
         }
     })
 
     
-    // answer1.addEventListener("click", function(evt){
-    //     if(this.class === questionList[0].realanswer) {
-
-    //         console.log("your right")  
-    //         //score 5 points and go to next question
-    //         playerPoints = playerPoints + 5;
-    //         console.log(playerPoints)
-    //     } else {
-    //         //if your wrong lose 10 sec and 3 points, go to next question
-
-    //         console.log("your wrong")
-    //     }
-
-    // })
-    // answer2.addEventListener("click", function(evt){
-    //     console.log(this.class)      
-    //     if(this.class === questionList[0].realanswer) {
-
-    //         console.log("your right")  
-    //         //score 5 points and go to next question
-    //         playerPoints = playerPoints + 5;
-    //         console.log(playerPoints)
-    //     } else {
-    //         //if your wrong lose 10 sec and 3 points, go to next question
-
-    //         console.log("your wrong")
-    //     }
-    // })
-    // answer3.addEventListener("click", function(evt){
-    //     console.log(this.class)      
-    //     if(this.class === questionList[0].realanswer) {
-
-    //         console.log("your right")  
-    //         //score 5 points and go to next question
-    //         playerPoints = playerPoints + 5;
-    //         console.log(playerPoints)
-    //     } else {
-    //         //if your wrong lose 10 sec and 3 points, go to next question
-
-    //         console.log("your wrong")
-    //     }
-    // })
-    // answer4.addEventListener("click", function(evt){
-    //     console.log(this.class)     
-    //     if(this.class === questionList[0].realanswer) {
-
-    //         console.log("your right")  
-    //         //score 5 points and go to next question
-    //         playerPoints = playerPoints + 5;
-    //         console.log(playerPoints)
-    //     } else {
-    //         //if your wrong lose 10 sec and 3 points, go to next question
-
-    //         console.log("your wrong")
-    //     } 
-    // 
-    
     
 }
-// }
+
 
 
 //function to start timer
 
 function countdown() {
 
-    var timeLeft = 60;
+    
 
     var timerCountdown = setInterval(function() {
         if (timeLeft > 0) {
