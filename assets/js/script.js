@@ -56,10 +56,8 @@ var createQuestionForm = function(current) {
 
     formButton.setAttribute("style", "display: none")
     
-    if(questionIndex > questionList.length || timeLeft < 1) { 
+    if(questionIndex < questionList.length && timeLeft > 1) { 
 
-        endGame();
-    } else {
     
     //create question and answers and append them to the webpage 
     console.log(current)
@@ -130,7 +128,12 @@ var createQuestionForm = function(current) {
 
         createQuestionForm(questionList[questionIndex])
     })    
-}};
+} else {
+
+    endGame();
+}
+
+};
     
 
 //when start button is clicked the timer starts running and the first question appears
@@ -166,6 +169,8 @@ function countdown() {
 
 
 var endGame = function() {
+
+    
     alert("game over");
 
     alert("you scored" + playerPoints + " points!");
