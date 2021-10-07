@@ -1,12 +1,14 @@
 //list of global variables and object array
 var playerPoints = 0
-var timeLeft = 5;
+var timeLeft = 30;
+var questionIndex = 0;
+var highScore = 0;
 
 var formButton = document.getElementById('Btn');
 var timerEl = document.getElementById('Timer');
 var questionBox = document.getElementById('Question-box');
 var question = document.getElementById('Question');
-var answerList = document.getElementById("Answer-list")
+var answerList = document.getElementById("Answer-list");
 var questionList = [
     {
         question: "What is your name?",
@@ -48,40 +50,36 @@ var questionList = [
         answer4: "toyota", 
         realanswer: "jeep"  
 }
-]
+];
 
+var createQuestionForm = function(current) {
 
+    formButton.setAttribute("style", "display: none")
+    
+    if(questionIndex > questionList.length || timeLeft < 1) { 
 
-
-
-var createQuestionForm = function(questionList) {
+        endGame();
+    } else {
     
-    
-    //create question and answers and append them to the webpage
-    
-    
-    
-    
-    
-    
-    question.textContent = questionList.question;
+    //create question and answers and append them to the webpage 
+    console.log(current)
+    question.textContent = current.question;
     
     var answer1 = document.createElement("li")
     answer1.classList.add("answer")
-    answer1.textContent = questionList.answer1
+    answer1.textContent = current.answer1
     
     var answer2 = document.createElement("li")
     answer2.classList.add("answer")
-    answer2.textContent = questionList.answer2
+    answer2.textContent = current.answer2
     
     var answer3 = document.createElement("li")
     answer3.classList.add("answer")   
-    answer3.textContent = questionList.answer3
+    answer3.textContent = current.answer3
     
     var answer4 = document.createElement("li")
     answer4.classList.add("answer")
-    answer4.textContent = questionList.answer4
-    
+    answer4.textContent = current.answer4
     
     
     answerList.appendChild(answer1)
@@ -103,21 +101,37 @@ var createQuestionForm = function(questionList) {
         //and move on to the next question. If wrong subtract 3pts from player score, minus 5 sec from countdown and move
         //on to next question.  
         
-        if(isQuestion === questionList.realanswer) { 
+        if(isQuestion === current.realanswer) { 
             
             playerPoints = playerPoints + 5;
             console.log(playerPoints)
+
+            answerList.removeChild(answer1);
+            answerList.removeChild(answer2);
+            answerList.removeChild(answer3);
+            answerList.removeChild(answer4);
+            question.textContent = "";
             
         } else {
+
+            answerList.removeChild(answer1);
+            answerList.removeChild(answer2);
+            answerList.removeChild(answer3);
+            answerList.removeChild(answer4);
+            question.textContent = "";
             
             playerPoints = playerPoints - 3;
             console.log(playerPoints)
             timeLeft = timeLeft - 10;
             
-        }    
-    })    
-}    
+        } 
 
+        questionIndex = ++questionIndex
+
+        createQuestionForm(questionList[questionIndex])
+    })    
+}};
+    
 
 //when start button is clicked the timer starts running and the first question appears
 
@@ -125,58 +139,38 @@ var createQuestionForm = function(questionList) {
 var startQuiz = function() {
     
     countdown();
-    
-    for (i=0; i < questionList.length; i++) {
         
-        console.log(i)
+            var pickedQuestion = questionList[questionIndex]
+            
+            createQuestionForm(pickedQuestion);  
         
-        if (timeLeft > 1 && i < questionList.length) {
-            
-            var pickedQuestion = questionList[i]
-            console.log(pickedQuestion)
-            
-            createQuestionForm(pickedQuestion);
-            
-            
-            
-    
-            } else {
-                alert("Game Over")
-            }}}
-
-    
-
+};
 
 
 //function to start timer
 
 function countdown() {
 
-    
-
     var timerCountdown = setInterval(function() {
-        if (timeLeft > 0) {
+        if (timeLeft > -1) {
 
             timerEl.textContent = timeLeft;
             timeLeft--;
+            console.log(timeLeft);
         }
     }, 1000)
 };
 
+//end game functionality, need to add compare to high score, if higher than previous or is no score, offer to save 
+//high score. If yes set to local storage, if no prompt new game??
+
+
+var endGame = function() {
+    alert("game over");
+
+    alert("you scored" + playerPoints + " points!");
+
+};
+
 
 formButton.addEventListener("click", startQuiz);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//when the game is over I can save my initials and score.
