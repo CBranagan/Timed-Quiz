@@ -6,10 +6,21 @@
 
 /*header info*/
 
+h1 {
+    font-size: 80px;
+    color: teal;
+}
+#Timer {
+    font-size: 40px;
+    color: red;
+}
+
 
 #Timer-box {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     align-items: top;
     min-height: 200px;
 }
@@ -30,4 +41,17 @@ main {
 #btn {
     padding: 25px;
     font-size: 20px;
+}
+
+#Question {
+    font-size: 40px;
+}
+
+.answer {
+    background-color: aqua;
+    font-size: 20px;
+}
+
+.answer:hover {
+    background-color: yellow;
 }

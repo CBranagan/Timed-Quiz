@@ -1,8 +1,9 @@
 //list of global variables and object array
-var playerPoints = 0
+var playerPoints = 0;
 var timeLeft = 30;
 var questionIndex = 0;
-var highScore = 0;
+var highScore = localStorage.getItem("high score");
+var timerCountdown;
 
 var formButton = document.getElementById('Btn');
 var timerEl = document.getElementById('Timer');
@@ -53,6 +54,8 @@ var questionList = [
 ];
 
 var createQuestionForm = function(current) {
+
+    
 
     formButton.setAttribute("style", "display: none")
     
@@ -130,8 +133,10 @@ var createQuestionForm = function(current) {
     })    
 } else {
 
+    
     endGame();
 }
+
 
 };
     
@@ -141,28 +146,27 @@ var createQuestionForm = function(current) {
 
 var startQuiz = function() {
     
-    countdown();
+   
+    
+        timerCountdown = setInterval(function() {
+            if (timeLeft > -1) {
+    
+                timerEl.textContent = timeLeft;
+                timeLeft--;
+            }
+        }, 1000)
+    
+    
         
             var pickedQuestion = questionList[questionIndex]
             
             createQuestionForm(pickedQuestion);  
+
+            
         
 };
 
 
-//function to start timer
-
-function countdown() {
-
-    var timerCountdown = setInterval(function() {
-        if (timeLeft > -1) {
-
-            timerEl.textContent = timeLeft;
-            timeLeft--;
-            console.log(timeLeft);
-        }
-    }, 1000)
-};
 
 //end game functionality, need to add compare to high score, if higher than previous or is no score, offer to save 
 //high score. If yes set to local storage, if no prompt new game??
@@ -171,11 +175,44 @@ function countdown() {
 var endGame = function() {
 
     
+    clearInterval(timerCountdown);
+    
     alert("game over");
-
+    
     alert("you scored" + playerPoints + " points!");
+    
+    if (playerPoints >= highScore) {
 
-};
+        var saveHighScore = confirm("You beat the high score would you like to save your new high score");
+    
+        if(saveHighScore) {
+    
+           var playerName = prompt("Enter your Name");
+            localStorage.setItem("high score", playerPoints);
+            localStorage.setItem("player name", playerName);
+
+            
+
+            displayHighScore();
+        }
+        } else {
+            displayHighScore();
+        }
+
+    };
+    
+    
+    var displayHighScore = function() {
+        
+        questionIndex = 0;
+        playerPoints = 0;
+        timeLeft = 30;
+    question.textContent = "High Score " + localStorage.getItem("player name") + " " + localStorage.getItem("high score");
+    formButton.removeAttribute("style", "display: none");
+    formButton.textContent = "play again"
+    
+
+}
 
 
 formButton.addEventListener("click", startQuiz);
