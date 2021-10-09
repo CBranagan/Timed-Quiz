@@ -12,3 +12,6 @@
 
 https://cbranagan.github.io/Timed-Quiz/
 
+![Timed Quiz](https://user-images.githubusercontent.com/89811148/136673373-4ae0d5e9-b58f-4ac0-90ba-9e1a41afdb70.PNG)
+
+
