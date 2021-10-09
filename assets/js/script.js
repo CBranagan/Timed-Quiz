@@ -57,14 +57,14 @@ var questionList = [
 var createQuestionForm = function(current) {
 
     
-
+    highScoresEl.setAttribute("style", "display: none")
     formButton.setAttribute("style", "display: none")
     
     if(questionIndex < questionList.length && timeLeft > 1) { 
 
     
     //create question and answers and append them to the webpage 
-    console.log(current)
+    
     question.textContent = current.question;
     
     var answer1 = document.createElement("li")
@@ -106,7 +106,7 @@ var createQuestionForm = function(current) {
         if(isQuestion === current.realanswer) { 
             
             playerPoints = playerPoints + 5;
-            console.log(playerPoints)
+            
 
             answerList.removeChild(answer1);
             answerList.removeChild(answer2);
@@ -123,7 +123,6 @@ var createQuestionForm = function(current) {
             question.textContent = "";
             
             playerPoints = playerPoints - 3;
-            console.log(playerPoints)
             timeLeft = timeLeft - 10;
             
         } 
@@ -132,6 +131,9 @@ var createQuestionForm = function(current) {
 
         createQuestionForm(questionList[questionIndex])
     })    
+} else if (timeLeft <= 0) {
+    alert("Time is up");
+    endGame();
 } else {
 
     
@@ -202,19 +204,37 @@ var endGame = function() {
 
     } else {
         displayHighScore();
-    }};
+    }
+
+};
     
     
 var displayHighScore = function() {
+
+    formButton.setAttribute("style", "display: none")
+    highScoresEl.setAttribute("style", "display: none")
         
         questionIndex = 0;
         playerPoints = 0;
         timeLeft = 40;
     question.textContent = "High Score " + localStorage.getItem("player name") + " " + localStorage.getItem("high score");
-    formButton.removeAttribute("style", "display: none");
-    formButton.textContent = "play again"
     
+    var buttonDiv = document.createElement('div');
+    buttonDiv.classList.add("Restart-Btn")
+     var restartButton = document.createElement('button');
+     restartButton.textContent = "Go Home";
+     restartButton.classList.add("Restart");
 
+     questionBox.appendChild(buttonDiv);
+     buttonDiv.appendChild(restartButton);
+
+     restartButton.addEventListener("click", reload)
+
+
+}
+
+function reload() {
+    reload = location.reload();
 }
 
 highScoresEl.addEventListener("click", displayHighScore);

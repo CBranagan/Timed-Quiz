@@ -39,7 +39,7 @@ main {
 }
 
 #Btn {
-    padding: 25px;
+    padding: 20px;
     font-size: 20px;
 }
 
@@ -54,6 +54,17 @@ main {
 
 .answer:hover {
     background-color: yellow;
+}
+
+.Restart-Btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Restart {
+    padding: 20px;
+    font-size: 20px;
 }
 
 footer {
