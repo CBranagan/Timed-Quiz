@@ -10,3 +10,5 @@
 # Highscores
   * click on the high scores to see the high scores
 
+https://cbranagan.github.io/Timed-Quiz/
+
