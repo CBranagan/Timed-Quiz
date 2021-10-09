@@ -38,7 +38,7 @@ main {
     border-radius: 15px;
 }
 
-#btn {
+#Btn {
     padding: 25px;
     font-size: 20px;
 }
@@ -54,4 +54,10 @@ main {
 
 .answer:hover {
     background-color: yellow;
+}
+
+footer {
+    text-align: center;
+    font-size: 30px;
+    color: green;
 }

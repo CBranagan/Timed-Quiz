@@ -1,10 +1,11 @@
 //list of global variables and object array
 var playerPoints = 0;
-var timeLeft = 30;
+var timeLeft = 40;
 var questionIndex = 0;
 var highScore = localStorage.getItem("high score");
 var timerCountdown;
 
+var highScoresEl = document.getElementById('Highscore');
 var formButton = document.getElementById('Btn');
 var timerEl = document.getElementById('Timer');
 var questionBox = document.getElementById('Question-box');
@@ -195,18 +196,20 @@ var endGame = function() {
 
             displayHighScore();
         }
-        } else {
+         else {
             displayHighScore();
         }
 
-    };
+    } else {
+        displayHighScore();
+    }};
     
     
-    var displayHighScore = function() {
+var displayHighScore = function() {
         
         questionIndex = 0;
         playerPoints = 0;
-        timeLeft = 30;
+        timeLeft = 40;
     question.textContent = "High Score " + localStorage.getItem("player name") + " " + localStorage.getItem("high score");
     formButton.removeAttribute("style", "display: none");
     formButton.textContent = "play again"
@@ -214,5 +217,5 @@ var endGame = function() {
 
 }
 
-
+highScoresEl.addEventListener("click", displayHighScore);
 formButton.addEventListener("click", startQuiz);
